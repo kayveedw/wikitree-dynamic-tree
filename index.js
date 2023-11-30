@@ -66,6 +66,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         "xtree": new XTreeView(),
         "stats": new StatsView(),
         "wtPlusMaps": new WtPlusMaps(),
+        "connectionsGrid": new connectionsGridView(),
     };
 
     for (let key in views) {

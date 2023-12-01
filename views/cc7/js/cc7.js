@@ -10,7 +10,7 @@ import { theSourceRules } from "../../../lib/biocheck-api/src/SourceRules.js";
 import { BioCheckPerson } from "../../../lib/biocheck-api/src/BioCheckPerson.js";
 import { Biography } from "../../../lib/biocheck-api/src/Biography.js";
 import { PeopleTable } from "./PeopleTable.js";
-import { Settings } from "./Settings.js";
+import { Settings } from "../../shared/Settings.js";
 import { Utils } from "../../shared/Utils.js";
 
 export class CC7 {

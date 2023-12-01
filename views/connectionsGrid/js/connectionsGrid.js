@@ -1,3 +1,6 @@
+import { Settings } from "../../shared/Settings.js";
+import { Utils } from "../../shared/Utils.js";
+
 export class ConnectionsGrid {
     static #helpText = `
     <x>[ x ]</x>
@@ -197,22 +200,22 @@ export class ConnectionsGrid {
             <span id="help" title="About this">?</span>
             </span>
             ${Settings.getSettingsDiv()}
-            <div id="explanation">${CC7.#helpText}</div>
+            <div id="explanation">${ConnectionsGrid.#helpText}</div>
             </div>`
         );
 
         const cc7Degree = Utils.getCookie("w_cc7Degree");
-        if (cc7Degree && cc7Degree > 0 && cc7Degree <= CC7.MAX_DEGREE) {
-            CC7.handleDegreeChange(cc7Degree);
+        if (cc7Degree && cc7Degree > 0 && cc7Degree <= ConnectionsGrid.MAX_DEGREE) {
+            ConnectionsGrid.handleDegreeChange(cc7Degree);
         }
         $("#cc7Degree")
             .off("change")
             .on("change", function () {
                 const theDegree = $("#cc7Degree").val();
-                CC7.handleDegreeChange(theDegree);
+                ConnectionsGrid.handleDegreeChange(theDegree);
             });
-        $("#fileInput").off("change").on("change", CC7.handleFileUpload);
-        $("#getPeopleButton").off("click").on("click", CC7.getConnectionsAction);
+        $("#fileInput").off("change").on("change", ConnectionsGrid.handleFileUpload);
+        $("#getPeopleButton").off("click").on("click", ConnectionsGrid.getConnectionsAction);
 
         $("#help")
             .off("click")
@@ -231,29 +234,29 @@ export class ConnectionsGrid {
             });
         $("#explanation").draggable();
 
-        $("#settingsButton").off("click").on("click", CC7.toggleSettings);
+        $("#settingsButton").off("click").on("click", ConnectionsGrid.toggleSettings);
         $("#saveSettingsChanges")
             .html("Apply Changes")
             .addClass("small button")
             .off("click")
-            .on("click", CC7.settingsChanged);
+            .on("click", ConnectionsGrid.settingsChanged);
         $("#settingsDIV")
             .css("width", "300")
             .dblclick(function () {
-                CC7.toggleSettings();
+                ConnectionsGrid.toggleSettings();
             });
         $("#settingsDIV").draggable();
         Settings.renderSettings();
-        CC7.setInfoPanelMessage();
+        ConnectionsGrid.setInfoPanelMessage();
 
-        $("#cancelLoad").off("click").on("click", CC7.cancelLoad);
-        $("#getDegreeButton").off("click").on("click", CC7.getOneDegreeOnly);
+        $("#cancelLoad").off("click").on("click", ConnectionsGrid.cancelLoad);
+        $("#getDegreeButton").off("click").on("click", ConnectionsGrid.getOneDegreeOnly);
 
         $("#savePeople")
             .off("click")
             .on("click", function (e) {
                 e.preventDefault();
-                CC7.handleFileDownload();
+                ConnectionsGrid.handleFileDownload();
             });
         $("#loadButton")
             .off("click")
@@ -262,6 +265,6 @@ export class ConnectionsGrid {
                 $("#fileInput").trigger("click");
             });
         $("#getPeopleButton").trigger("click");
-        $(document).off("keyup", CC7.closePopup).on("keyup", CC7.closePopUp);
+        $(document).off("keyup", ConnectionsGrid.closePopup).on("keyup", ConnectionsGrid.closePopUp);
     }
 }
